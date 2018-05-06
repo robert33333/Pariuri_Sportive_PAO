@@ -19,11 +19,11 @@ public class Bilet {
         this.pariuri = pariuri;
     }
 
-    public Bilet(ArrayList<Pariu> pariuri, double bani) {
+    public Bilet(ArrayList<Pariu> pariuri) {
         idNum++;
         this.id = idNum;
         this.pariuri = pariuri;
-        this.bani = bani;
+        this.bani = 0.0;
     }
 
     public int getId() {
@@ -42,7 +42,7 @@ public class Bilet {
         this.bani = bani;
     }
 
-    double calculeazaCastigPotential() {
+    public double calculeazaCastigPotential() {
         double castig = bani;
         for (Pariu pariu : pariuri) {
             switch (pariu.getOptiune()) {
@@ -60,7 +60,7 @@ public class Bilet {
         return castig;
     }
 
-    boolean verificaBilet() {
+    public boolean verificaBilet() {
         for (Pariu pariu : pariuri) {
             if (!pariu.getOptiune().equals(pariu.getMeci().getRezultat()))
                 return false;

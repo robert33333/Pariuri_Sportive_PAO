@@ -2,8 +2,6 @@ package ui;
 
 import date.DataBase;
 import date.Meci;
-import launcher.Launcher;
-import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.awt.*;

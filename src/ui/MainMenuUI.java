@@ -1,7 +1,5 @@
 package ui;
 
-import launcher.Launcher;
-
 import javax.swing.*;
 
 /**
@@ -13,7 +11,7 @@ public class MainMenuUI {
     public static JTable tabel;
     public static JMenu competitii;
     public static JMenu bilet;
-    public static JMenu raport;
+    private static JMenu raport;
 
 
     public static void interfata() {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Rob on 06.05.2018.
  */
-public class TabelMeciuri extends AbstractTableModel {
+class TabelMeciuri extends AbstractTableModel {
     private final String[] nume_coloane = {"ID","Echipa 1", "Echipa 2", "1", "X", "2", "Rezultat"};
 
     @Override

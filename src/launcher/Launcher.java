@@ -5,14 +5,12 @@ import date.Meci;
 import ui.BiletUI;
 import ui.CompetitieUI;
 import ui.MainMenuUI;
-import ui.TabelMeciuri;
-
 import javax.swing.*;
 
 /**
  * Created by Rob on 06.05.2018.
  */
-public class Launcher {
+class Launcher {
     public static JFrame frame;
     public static JMenuBar menuBar;
     public static JTable tabel;
