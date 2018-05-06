@@ -6,7 +6,6 @@ import date.Meci;
 import date.Pariu;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,15 +16,15 @@ import java.util.ArrayList;
  * Created by Rob on 06.05.2018.
  */
 public class BiletUI {
-    static JFrame frame = MainMenuUI.frame;
+    private static final JFrame frame = MainMenuUI.frame;
 
-    static void updateCastigMiza(JLabel miza, JLabel castig) {
-        miza.setText(new Double(DataBase.biletCurent.getBani()).toString());
-        castig.setText(new Double(DataBase.biletCurent.calculeazaCastigPotential()).toString());
+    private static void updateCastigMiza(JLabel miza, JLabel castig) {
+        miza.setText(Double.toString(DataBase.biletCurent.getBani()));
+        castig.setText(Double.toString(DataBase.biletCurent.calculeazaCastigPotential()));
     }
 
     public static void interfata() {
-        JMenuBar menubar = MainMenuUI.menubar;
+        //JMenuBar menubar = MainMenuUI.menubar;
         JMenu bilet = MainMenuUI.bilet;
         JMenuItem inregistrareSimplu = new JMenuItem("Inregistrare bilet simplu");
         JMenuItem inregistrareCompus = new JMenuItem("Inregistrare bilet compus");
@@ -42,16 +41,60 @@ public class BiletUI {
         });
 
         inregistrareSimplu.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 interfataAdaugareBilet("Simplu");
             }
         });
 
-        
+        validareBilet.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                JDialog dialogValidare = new JDialog(frame,"Validare bilet", true);
+                dialogValidare.setLayout(new GridLayout(2,2));
+                JTextField idBilet = new JTextField();
+                JButton ok = new JButton("Ok");
+                JButton cancel = new JButton("Cancel");
+                dialogValidare.add(new JLabel("ID Bilet"));
+                dialogValidare.add(idBilet);
+                dialogValidare.add(ok);
+                dialogValidare.add(cancel);
+
+                ok.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        for (Bilet bilet1 : DataBase.bilete) {
+                            if (bilet1.getId() == Integer.parseInt(idBilet.getText())) {
+                                if (bilet1.verificaBilet()) {
+                                    if (!bilet1.isDejaValidat()) {
+                                        JOptionPane.showMessageDialog(null, "Biletul este valid!");
+                                        bilet1.setDejaValidat();
+                                        dialogValidare.dispose();
+                                    }
+                                    else {
+                                        JOptionPane.showMessageDialog(null, "Biletul a fost deja validat!");
+                                        dialogValidare.dispose();
+                                    }
+                                    return;
+                                }
+                            }
+                        }
+                        JOptionPane.showMessageDialog(null, "Biletul NU este valid!");
+                        dialogValidare.dispose();
+                    }
+                });
+
+                cancel.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        dialogValidare.dispose();
+                    }
+                });
+
+                dialogValidare.setBounds(400,400,300,150);
+                dialogValidare.setResizable(false);
+                dialogValidare.setVisible(true);
+            }
+        });
     }
 
-    static void interfataAdaugareBilet(String tip) {
+    private static void interfataAdaugareBilet(String tip) {
         //creere bilet
         ArrayList<Pariu> pariuriCurente = new ArrayList<>();
         DataBase.biletCurent = new Bilet(pariuriCurente);
@@ -109,7 +152,7 @@ public class BiletUI {
                 ok.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         try {
-                            if (tip == "Simplu")
+                            if (tip.equals("Simplu"))
                                 if (DataBase.biletCurent.getPariuri().size() > 0)
                                     throw new PariuriException("Pentru mai multe meciuri selectati bilet compus!");
                             if (!optiune.getText().equals("1"))
@@ -268,6 +311,7 @@ public class BiletUI {
                     JOptionPane.showMessageDialog(null, "Miza nu poate fi 0!");
                     return;
                 }
+                JOptionPane.showMessageDialog(null, "Biletul cu ID " + DataBase.biletCurent.getId() + " a fost inregistrat!");
                 DataBase.bilete.add(DataBase.biletCurent);
                 DataBase.biletCurent = null;
                 dialogPariuri.dispose();

@@ -1,10 +1,8 @@
 package ui;
 
 import date.DataBase;
-import date.Pariu;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
 
 /**
  * Created by Rob on 06.05.2018.
@@ -53,8 +51,4 @@ class TabelPariuri extends AbstractTableModel {
         return getValueAt(0,col).getClass();
     }
 
-    public ArrayList<Pariu> getList() {
-        return DataBase.biletCurent.getPariuri();
-
-    }
 }

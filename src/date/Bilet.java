@@ -6,17 +6,14 @@ import java.util.ArrayList;
  * Created by Rob on 06.05.2018.
  */
 public class Bilet {
+    private boolean dejaValidat = false;
     private static int idNum;
-    private int id;
+    private final int id;
     private ArrayList<Pariu> pariuri = new ArrayList<>();
     private double bani;
 
     public ArrayList<Pariu> getPariuri() {
         return pariuri;
-    }
-
-    public void setPariuri(ArrayList<Pariu> pariuri) {
-        this.pariuri = pariuri;
     }
 
     public Bilet(ArrayList<Pariu> pariuri) {
@@ -28,10 +25,6 @@ public class Bilet {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public double getBani() {
@@ -66,5 +59,13 @@ public class Bilet {
                 return false;
         }
         return true;
+    }
+
+    public boolean isDejaValidat() {
+        return dejaValidat;
+    }
+
+    public void setDejaValidat() {
+        this.dejaValidat = true;
     }
 }

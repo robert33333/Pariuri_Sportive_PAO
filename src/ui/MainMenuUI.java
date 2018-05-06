@@ -7,17 +7,15 @@ import javax.swing.*;
  */
 public class MainMenuUI {
     public static JFrame frame;
-    public static JMenuBar menubar;
     public static JTable tabel;
     public static JMenu competitii;
     public static JMenu bilet;
-    private static JMenu raport;
 
 
     public static void interfata() {
         //afisare
         frame = new JFrame();
-        menubar = new JMenuBar();
+        JMenuBar menubar = new JMenuBar();
 
         tabel = new JTable(new TabelMeciuri());
         frame.setContentPane(new JPanel());
@@ -30,7 +28,7 @@ public class MainMenuUI {
 
         competitii = new JMenu("Competitii");
         bilet = new JMenu("Bilet");
-        raport = new JMenu("Raport");
+        JMenu raport = new JMenu("Raport");
 
         frame.setJMenuBar(menubar);
         menubar.add(competitii);

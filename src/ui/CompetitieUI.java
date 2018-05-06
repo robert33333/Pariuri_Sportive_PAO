@@ -16,7 +16,7 @@ public class CompetitieUI {
     public static void interfata() {
         JTable tabel = MainMenuUI.tabel;
         JFrame frame = MainMenuUI.frame;
-        JMenuBar menubar = MainMenuUI.menubar;
+        //JMenuBar menubar = MainMenuUI.menubar;
         JMenu competitii = MainMenuUI.competitii;
         JMenuItem adaugareMeci = new JMenuItem("Adaugare meci");
         JMenuItem adaugareRezultat = new JMenuItem("Adaugare rezultat");

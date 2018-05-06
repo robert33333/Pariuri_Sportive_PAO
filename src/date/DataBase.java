@@ -7,6 +7,6 @@ import java.util.ArrayList;
  */
 public class DataBase {
     public static final ArrayList<Meci> meciuri = new ArrayList<>();
-    public static ArrayList<Bilet> bilete = new ArrayList<>();
+    public static final ArrayList<Bilet> bilete = new ArrayList<>();
     public static Bilet biletCurent;
 }

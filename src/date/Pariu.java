@@ -4,8 +4,8 @@ package date;
  * Created by Rob on 06.05.2018.
  */
 public class Pariu {
-    private Meci meci;
-    private String optiune;
+    private final Meci meci;
+    private final String optiune;
 
     public Pariu(Meci meci, String optiune) {
         this.meci = meci;
@@ -16,16 +16,8 @@ public class Pariu {
         return meci;
     }
 
-    public void setMeci(Meci meci) {
-        this.meci = meci;
-    }
-
     public String getOptiune() {
         return optiune;
-    }
-
-    public void setOptiune(String optiune) {
-        this.optiune = optiune;
     }
 
     @Override
@@ -35,8 +27,7 @@ public class Pariu {
 
         Pariu pariu = (Pariu) o;
 
-        if (meci != null ? !meci.equals(pariu.meci) : pariu.meci != null) return false;
-        return optiune != null ? optiune.equals(pariu.optiune) : pariu.optiune == null;
+        return (meci != null ? meci.equals(pariu.meci) : pariu.meci == null) && (optiune != null ? optiune.equals(pariu.optiune) : pariu.optiune == null);
     }
 
     @Override
