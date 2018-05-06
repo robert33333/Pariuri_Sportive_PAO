@@ -2,7 +2,9 @@ package launcher;
 
 import date.DataBase;
 import date.Meci;
-import ui.Competitie;
+import ui.BiletUI;
+import ui.CompetitieUI;
+import ui.MainMenuUI;
 import ui.TabelMeciuri;
 
 import javax.swing.*;
@@ -21,19 +23,8 @@ public class Launcher {
         DataBase.meciuri.add(meci);
 
 
-        //afisare
-        frame = new JFrame();
-        menuBar = new JMenuBar();
-
-        tabel = new JTable(new TabelMeciuri());
-        frame.setContentPane(new JPanel());
-        JScrollPane scroll = new JScrollPane(tabel);
-        frame.getContentPane().add(scroll);
-
-        frame.setBounds(100,100,500,500);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Competitie.interfata();
+        MainMenuUI.interfata();
+        CompetitieUI.interfata();
+        BiletUI.interfata();
     }
 }

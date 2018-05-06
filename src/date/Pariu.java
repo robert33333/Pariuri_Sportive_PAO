@@ -27,4 +27,22 @@ public class Pariu {
     public void setOptiune(String optiune) {
         this.optiune = optiune;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pariu pariu = (Pariu) o;
+
+        if (meci != null ? !meci.equals(pariu.meci) : pariu.meci != null) return false;
+        return optiune != null ? optiune.equals(pariu.optiune) : pariu.optiune == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = meci != null ? meci.hashCode() : 0;
+        result = 31 * result + (optiune != null ? optiune.hashCode() : 0);
+        return result;
+    }
 }
