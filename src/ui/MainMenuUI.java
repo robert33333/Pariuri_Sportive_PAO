@@ -2,15 +2,12 @@ package ui;
 
 import javax.swing.*;
 
-/**
- * Created by Rob on 06.05.2018.
- */
 public class MainMenuUI {
     public static JFrame frame;
     public static JTable tabel;
     public static JMenu competitii;
     public static JMenu bilet;
-
+    public static JMenu raport;
 
     public static void interfata() {
         //afisare
@@ -28,7 +25,7 @@ public class MainMenuUI {
 
         competitii = new JMenu("Competitii");
         bilet = new JMenu("Bilet");
-        JMenu raport = new JMenu("Raport");
+        raport = new JMenu("Raport");
 
         frame.setJMenuBar(menubar);
         menubar.add(competitii);

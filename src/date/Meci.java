@@ -1,10 +1,11 @@
 package date;
 
+import java.io.Serializable;
+
 /**
  * Created by Rob on 06.05.2018.
  */
-public class Meci {
-    private static int idNum;
+public class Meci implements Serializable {
     private final int id;
     private final String echipa1;
     private final String echipa2;
@@ -13,9 +14,8 @@ public class Meci {
     private final Double cota2;
     private final Double cotax;
 
-    public Meci(String echipa1, String echipa2, Double cota1, Double cotax, Double cota2) {
-        idNum++;
-        this.id = idNum;
+    public Meci(int id, String echipa1, String echipa2, Double cota1, Double cotax, Double cota2) {
+        this.id = id;
         this.echipa1 = echipa1;
         this.echipa2 = echipa2;
         this.cota1 = cota1;

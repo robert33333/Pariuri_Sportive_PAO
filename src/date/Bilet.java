@@ -1,26 +1,25 @@
 package date;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Rob on 06.05.2018.
  */
-public class Bilet {
+public class Bilet implements Serializable {
     private boolean dejaValidat = false;
-    private static int idNum;
     private final int id;
-    private ArrayList<Pariu> pariuri = new ArrayList<>();
+    private final ArrayList<Pariu> pariuri;
     private double bani;
 
     public ArrayList<Pariu> getPariuri() {
         return pariuri;
     }
 
-    public Bilet(ArrayList<Pariu> pariuri) {
-        idNum++;
+    public Bilet(int idNum, ArrayList<Pariu> pariuri, double bani) {
         this.id = idNum;
         this.pariuri = pariuri;
-        this.bani = 0.0;
+        this.bani = bani;
     }
 
     public int getId() {

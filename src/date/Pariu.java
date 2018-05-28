@@ -1,9 +1,11 @@
 package date;
 
+import java.io.Serializable;
+
 /**
  * Created by Rob on 06.05.2018.
  */
-public class Pariu {
+public class Pariu implements Serializable {
     private final Meci meci;
     private final String optiune;
 
