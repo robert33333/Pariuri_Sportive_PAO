@@ -102,7 +102,7 @@ public class CompetitieUI {
                         if (meci.getId() == Integer.parseInt(idMeci.getText())) {
                             meci.setRezultat(rezultat.getText());
                             DataBase.oos.writeObject(new Comanda("adauga rezultat", meci));
-                            //DataBase.meciuri = (ArrayList<Meci>) DataBase.ois.readObject();
+                            DataBase.meciuri = (ArrayList<Meci>) DataBase.ois.readObject();
                             gasit = true;
                             break;
                         }

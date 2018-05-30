@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static ui.MainMenuUI.tabel;
+
 /**
  * Created by Rob on 06.05.2018.
  */
@@ -46,6 +48,13 @@ public class BiletUI {
             dialogValidare.add(cancel);
 
             ok.addActionListener(actionEvent1 -> {
+                try {
+                    DataBase.oos.writeObject(new Comanda("refresh", null));
+                    DataBase.meciuri = (ArrayList<Meci>) DataBase.ois.readObject();
+                    tabel.updateUI();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 try {
                     DataBase.oos.writeObject(new Comanda("refresh bilet", null));
                     DataBase.bilete = (ArrayList<Bilet>) DataBase.ois.readObject();
@@ -159,6 +168,10 @@ public class BiletUI {
                                 if (pariu.getMeci().getId() == pariu1.getMeci().getId())
                                     throw new PariuriException("Meci deja selectat!");
                             }
+                            if (meci != null && meci.getRezultat() != null)
+                                if (!meci.getRezultat().equals("null")) {
+                                    throw new PariuriException("Meciul a fost deja jucat!");
+                                }
                             DataBase.biletCurent.getPariuri().add(pariu);
                             updateCastigMiza(miza, castig);
                             tabelPariuri.updateUI();
@@ -173,6 +186,7 @@ public class BiletUI {
                 } catch (PariuriException exception) {
                     JOptionPane.showMessageDialog(null, exception.mesaj);
                 } catch (Exception exceptionGeneric) {
+                    exceptionGeneric.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Completeaza corect datele!");
                 }
             });
@@ -266,9 +280,17 @@ public class BiletUI {
                 return;
             }
             try {
+                try {
+                    DataBase.oos.writeObject(new Comanda("refresh", null));
+                    DataBase.meciuri = (ArrayList<Meci>) DataBase.ois.readObject();
+                    tabel.updateUI();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 DataBase.oos.writeObject(new Comanda("insert bilet", DataBase.biletCurent));
                 DataBase.bilete = (ArrayList<Bilet>) DataBase.ois.readObject();
                 int id = DataBase.bilete.get(DataBase.bilete.size()-1).getId();
+                //int id = 0;
                 JOptionPane.showMessageDialog(null, "Biletul cu ID " + id + " a fost inregistrat!");
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
